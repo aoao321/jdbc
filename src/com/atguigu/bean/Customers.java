@@ -58,6 +58,7 @@ public class Customers {
 
     @Override
     public String toString() {
+        System.out.println("git");
         return "Customers{" +
                 "id=" + id +
                 "123, name='" + name + '\'' +
