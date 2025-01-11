@@ -35,6 +35,7 @@ public class JDBCUtils {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        System.out.println(connection);
         return connection;
     }
 
