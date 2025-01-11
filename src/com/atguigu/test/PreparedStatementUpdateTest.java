@@ -1,4 +1,4 @@
-package com.atguigu.java;
+package com.atguigu.test;
 
 import com.atguigu.utils.JDBCUtils;
 import org.junit.Test;
