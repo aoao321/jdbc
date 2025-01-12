@@ -11,7 +11,7 @@ import java.util.List;
  * @author aoao
  * @create 2025-01-11-15:21
  */
-public class CustomerDAOImpl extends DAO implements CustomerDAO{
+public class CustomerDAOImpl extends DAO<Customers> implements CustomerDAO{
     @Override
     public void insert(Connection connection, Customers customer) {
         String sql = "insert into customers (id,name,email,birth)  values(?,?,?,?)";
@@ -33,13 +33,13 @@ public class CustomerDAOImpl extends DAO implements CustomerDAO{
     @Override
     public Customers findById(Connection connection, int id) {
         String sql = "select name,email,birth from customers where id=?";
-        return getInstance(connection,Customers.class,sql,id);
+        return getInstance(connection,sql,id);
     }
 
     @Override
     public List<Customers> findAll(Connection connection) {
         String sql = "select name,email,birth from customers ";
-        return getForList(connection, Customers.class, sql);
+        return getForList(connection, sql);
     }
 
     @Override

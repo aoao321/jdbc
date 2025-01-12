@@ -3,6 +3,8 @@ package com.atguigu.dao;
 import com.atguigu.utils.JDBCUtils;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,10 +16,20 @@ import java.util.Map;
  * @author aoao
  * @create 2025-01-11-14:34
  */
-public abstract class DAO {
+public abstract class DAO<T> {
+
+    private Class<T> clazz = null;
+
+    {
+        //获取当前DAO子类继承的父类中泛型
+        Type genericSuperclass = this.getClass().getGenericSuperclass();
+        ParameterizedType parameterizedType = (ParameterizedType) genericSuperclass;
+        Type[] typeArguments = parameterizedType.getActualTypeArguments();
+        clazz = (Class<T>) typeArguments[0];
+    }
 
     //查询单条操作
-    public <T> T getInstance(Connection connection, Class<T> clazz, String sql, Object ...args){
+    public T getInstance(Connection connection,String sql, Object ...args){
         PreparedStatement ps = null;
         ResultSet rs = null;
 
@@ -53,7 +65,7 @@ public abstract class DAO {
     }
 
     //查询多条操作
-    public <T> List<T> getForList(Connection connection, Class<T> clazz, String sql, Object ...args){
+    public List<T> getForList(Connection connection, String sql, Object ...args){
         PreparedStatement ps = null;
         ResultSet rs = null;
 

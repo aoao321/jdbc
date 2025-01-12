@@ -64,5 +64,18 @@ public class DAOTest {
         JDBCUtils.close(connection,null);
     }
 
+    @Test
+    public void getCountTest() {
+        Connection connection = JDBCUtils.getConnection();
+        System.out.println(customersDao.getCount(connection));
+        JDBCUtils.close(connection,null);
+    }
+
+    @Test
+    public void getMaxBrithTest(){
+        Connection connection = JDBCUtils.getConnection();
+        System.out.println(customersDao.getMaxBrith(connection));
+        JDBCUtils.close(connection,null);
+    }
 
 }
